@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30002.166
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IlluminaJsonParser", "IlluminaJsonParser\IlluminaJsonParser.csproj", "{6405FDBC-1D04-4091-9326-772E1ABCE17D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{6405FDBC-1D04-4091-9326-772E1ABCE17D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6405FDBC-1D04-4091-9326-772E1ABCE17D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6405FDBC-1D04-4091-9326-772E1ABCE17D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6405FDBC-1D04-4091-9326-772E1ABCE17D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {4198FEE3-5512-42D7-824A-34AAB8E71ABF}
+	EndGlobalSection
+EndGlobal
