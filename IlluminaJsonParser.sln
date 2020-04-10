@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30002.166
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IlluminaJsonParser", "IlluminaJsonParser\IlluminaJsonParser.csproj", "{6405FDBC-1D04-4091-9326-772E1ABCE17D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Contoller", "IlluminaJsonParser\Contoller.csproj", "{6405FDBC-1D04-4091-9326-772E1ABCE17D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RemoveMe", "RemoveMe\RemoveMe.csproj", "{4BA13101-E52C-4FFA-908B-212ECA3215B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Domain", "Domain\Domain.csproj", "{8B3B64BA-EB23-4C58-B2CA-4DC2A613EB63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{6405FDBC-1D04-4091-9326-772E1ABCE17D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6405FDBC-1D04-4091-9326-772E1ABCE17D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6405FDBC-1D04-4091-9326-772E1ABCE17D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{4BA13101-E52C-4FFA-908B-212ECA3215B2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{4BA13101-E52C-4FFA-908B-212ECA3215B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{4BA13101-E52C-4FFA-908B-212ECA3215B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{4BA13101-E52C-4FFA-908B-212ECA3215B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8B3B64BA-EB23-4C58-B2CA-4DC2A613EB63}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8B3B64BA-EB23-4C58-B2CA-4DC2A613EB63}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8B3B64BA-EB23-4C58-B2CA-4DC2A613EB63}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8B3B64BA-EB23-4C58-B2CA-4DC2A613EB63}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

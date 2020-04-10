@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.IO;
+using Domain;
 
 namespace IlluminaJsonParser
 {
@@ -12,9 +14,20 @@ namespace IlluminaJsonParser
 
             try
             {
-                using (StreamReader file = File.OpenText(filePath))
+                JsonSerializer jsonSerializer = new JsonSerializer();
+                using (StreamReader streamReader = File.OpenText(filePath))
                 {
                     Console.WriteLine($"Reading from file {filePath}.");
+                    using (JsonReader reader = new JsonTextReader(streamReader))
+                    {
+                        while (reader.Read())
+                        {
+                            if (reader.TokenType == JsonToken.StartObject)
+                            {
+                                var url = jsonSerializer.Deserialize<UrlData>(reader);
+                            }
+                        }                        
+                    }
                 }
             }
             catch
