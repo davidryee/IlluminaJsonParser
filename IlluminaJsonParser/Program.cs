@@ -86,7 +86,7 @@ namespace IlluminaJsonParser
                 {
                     UrlData urlInfo = (UrlData)(dataToParse.Dequeue());
                     UrlOutputData outputData = parser.Parse(urlInfo);
-                    File.WriteAllText(outputFilePath, outputData.ToString());
+                    File.WriteAllText(outputFilePath, JsonConvert.SerializeObject(outputData));
                 }
             }
         }
