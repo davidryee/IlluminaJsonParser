@@ -8,7 +8,7 @@ namespace Domain
         {
             UrlOutputData urlOutputData = new UrlOutputData();
             urlOutputData.Path = new Dictionary<string, UrlInfo>();
-            urlOutputData.Path.Add(input.Path, new UrlInfo { Url = input.Url, SizeInBytes = input.SizeInBytes });
+            urlOutputData.Path.Add(input.Path, new UrlInfo { Url = input.Url, SizeInBytes = input.Size });
             return urlOutputData;
         }
     }

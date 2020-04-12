@@ -12,13 +12,13 @@ namespace Domain.Tests
             UrlData inputData = new UrlData();
             inputData.Url = "https://www.google.com/";
             inputData.Path = "PathValue1";
-            inputData.SizeInBytes = 10;
+            inputData.Size = 10;
             UrlOutputData expectedOutputData = new UrlOutputData();
             expectedOutputData.Path = new Dictionary<string, UrlInfo>();
             expectedOutputData.Path.Add(inputData.Path, new UrlInfo()
             {
                 Url = inputData.Url,
-                SizeInBytes = inputData.SizeInBytes
+                SizeInBytes = inputData.Size
             });
 
             UrlDataParser parser = new UrlDataParser();

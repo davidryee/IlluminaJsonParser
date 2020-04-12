@@ -11,6 +11,6 @@ namespace Domain
         public string Path { get; set; }
 
         //Size in bytes of the json object
-        public int SizeInBytes { get; set; }
+        public int Size { get; set; }
     }
 }

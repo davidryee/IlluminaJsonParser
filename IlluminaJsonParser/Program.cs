@@ -24,74 +24,47 @@ namespace IlluminaJsonParser
             Console.WriteLine("Please enter a file path to use for the output.");
             outputFilePath = Console.ReadLine();
             
-            ThreadStart addToQueueThreadStart = new ThreadStart(AddToQueue);
+            ThreadStart addToQueueThreadStart = new ThreadStart(ReadFromFile);
             Thread addToQueueThread = new Thread(addToQueueThreadStart);
             
-            ThreadStart removeFromQueueThreadStart = new ThreadStart(RemoveFromQueue);
+            ThreadStart removeFromQueueThreadStart = new ThreadStart(WriteToFile);
             Thread removeFromQueueThread = new Thread(removeFromQueueThreadStart);
             
             addToQueueThread.Start();
             removeFromQueueThread.Start();
-
-            //while(dataLeftInFile || dataToParse.Count > 0)
-            //{
-            //    UrlData dataFromQueue = (UrlData)(dataToParse.Dequeue());
-            //    UrlOutputData parsedData = parser.Parse(dataFromQueue);
-            //    File.WriteAllText(outputFilePath, parsedData.ToString());
-            //}
-
-            //try
-            //{
-            //    JsonSerializer jsonDeserializer = new JsonSerializer();
-            //    using (StreamReader streamReader = File.OpenText(inputFilePath))
-            //    {
-            //        Console.WriteLine($"Reading from file {inputFilePath}.");
-            //        using (JsonReader reader = new JsonTextReader(streamReader))
-            //        {
-            //            while (reader.Read())
-            //            {
-            //                if (reader.TokenType == JsonToken.StartObject)
-            //                {
-            //                    UrlData url = null;
-            //                    try
-            //                    {
-            //                        url = jsonDeserializer.Deserialize<UrlData>(reader);
-            //                    }
-            //                    catch(Exception ex)
-            //                    {
-            //                        Console.WriteLine("JSON object could not be parsed.");
-            //                    }
-            //                    dataToParse.Enqueue(url);
-
-            //                    //validate input - Have unit tests around this
-            //                    //form output data - Have unit tests around this
-            //                    //*****make a test file with 500k objects
-            //                }
-            //            }
-            //            dataLeftInFile = false;
-            //        }
-            //    }
-            //}
-            //catch
-            //{
-            //    Console.WriteLine($"File {inputFilePath} could not be opened");
-            //}
         }
 
-        private static void RemoveFromQueue()
+        private static void WriteToFile()
         {
-            while (dataLeftInFile || dataToParse.Count > 0)
+            using(StreamWriter streamWriter = new StreamWriter(outputFilePath))
             {
-                if(dataToParse.Count > 0)
+                streamWriter.WriteLine("{");
+                
+                while (dataLeftInFile || dataToParse.Count > 0)
                 {
-                    UrlData urlInfo = (UrlData)(dataToParse.Dequeue());
-                    UrlOutputData outputData = parser.Parse(urlInfo);
-                    File.WriteAllText(outputFilePath, JsonConvert.SerializeObject(outputData));
+                    if (dataToParse.Count > 0)
+                    {
+                        UrlData urlInfo = (UrlData)(dataToParse.Dequeue());
+                        UrlOutputData outputData = parser.Parse(urlInfo);
+                        string jsonOutputData = JsonConvert.SerializeObject(outputData.Path);
+
+                        //remove the first and last brackets from the json object { myobject }
+                        streamWriter.Write(jsonOutputData.Substring(1, jsonOutputData.Length - 2));
+
+                        //only write the comma if there is data left to parse, either remaining in the file or on the queue
+                        //i.e. don't write the comma if this is the last element
+                        if (dataLeftInFile || dataToParse.Count > 0)
+                        {
+                            streamWriter.WriteLine(",");
+                        }
+                    }
                 }
+                
+                streamWriter.WriteLine("}");
             }
         }
 
-        private static void AddToQueue()
+        private static void ReadFromFile()
         {
             JsonSerializer jsonDeserializer = new JsonSerializer();
             using (StreamReader streamReader = File.OpenText(inputFilePath))
