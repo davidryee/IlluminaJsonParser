@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Domain
 {
@@ -6,6 +7,10 @@ namespace Domain
     {
         public UrlOutputData Parse(UrlData input)
         {
+            if(!Uri.IsWellFormedUriString(input.Url, UriKind.Absolute))
+            {
+                throw new UriFormatException($"URL {input.Url} is malformed");
+            }
             UrlOutputData urlOutputData = new UrlOutputData();
             urlOutputData.Path = new Dictionary<string, UrlInfo>();
             urlOutputData.Path.Add(input.Path, new UrlInfo { Url = input.Url, SizeInBytes = input.Size });

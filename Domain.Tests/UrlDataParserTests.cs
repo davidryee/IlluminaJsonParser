@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
@@ -31,6 +32,16 @@ namespace Domain.Tests
 
             Assert.AreEqual(expectedUrlData.Url, resultUrlData.Url);
             Assert.AreEqual(expectedUrlData.SizeInBytes, resultUrlData.SizeInBytes);
+        }
+
+        [TestMethod]
+        public void InvalidUrl_ThrowsException()
+        {
+            UrlData inputData = new UrlData();
+            inputData.Url = "6https://www.google.com/";
+
+            UrlDataParser urlDataParser = new UrlDataParser();
+            Assert.ThrowsException<UriFormatException>(() => urlDataParser.Parse(inputData));
         }
     }
 }
