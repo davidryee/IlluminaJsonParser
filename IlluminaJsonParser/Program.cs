@@ -45,7 +45,17 @@ namespace IlluminaJsonParser
                     if (dataToParse.Count > 0)
                     {
                         UrlData urlInfo = (UrlData)(dataToParse.Dequeue());
-                        UrlOutputData outputData = parser.Parse(urlInfo);
+                        UrlOutputData outputData = null;
+                        try
+                        {
+                            outputData = parser.Parse(urlInfo);
+                        }
+                        catch (UriFormatException ex)
+                        {
+                            Console.WriteLine("Error! " + ex.Message);
+                            Environment.Exit(1);
+                        }
+
                         string jsonOutputData = JsonConvert.SerializeObject(outputData.Path);
 
                         //remove the first and last brackets from the json object { myobject }
@@ -62,6 +72,8 @@ namespace IlluminaJsonParser
                 
                 streamWriter.WriteLine("}");
             }
+
+            Console.WriteLine($"Success! All data has been written to {outputFilePath}");
         }
 
         private static void ReadFromFile()

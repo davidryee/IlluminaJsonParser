@@ -9,7 +9,7 @@ namespace Domain
         {
             if(!Uri.IsWellFormedUriString(input.Url, UriKind.Absolute))
             {
-                throw new UriFormatException($"URL {input.Url} is malformed");
+                throw new UriFormatException($"The URL {input.Url} is malformed");
             }
             UrlOutputData urlOutputData = new UrlOutputData();
             urlOutputData.Path = new Dictionary<string, UrlInfo>();
