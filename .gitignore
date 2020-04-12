@@ -1,3 +1,7 @@
 .vs
 IlluminaJsonParser\obj
 IlluminaJsonParser\bin
+Domain\obj
+Domain\bin
+Domain.Tests\obj
+Domain.Tests\bin

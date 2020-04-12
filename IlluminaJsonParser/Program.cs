@@ -19,10 +19,10 @@ namespace IlluminaJsonParser
         {
 
             Console.WriteLine("Please enter the path to the file you wish to use as input. File must be in valid json format.");
-            inputFilePath = Console.ReadLine();
+            inputFilePath = Console.ReadLine().Trim();
 
             Console.WriteLine("Please enter a file path to use for the output.");
-            outputFilePath = Console.ReadLine();
+            outputFilePath = Console.ReadLine().Trim();
             
             ThreadStart addToQueueThreadStart = new ThreadStart(ReadFromFile);
             Thread addToQueueThread = new Thread(addToQueueThreadStart);
