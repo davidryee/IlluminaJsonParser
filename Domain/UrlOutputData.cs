@@ -10,6 +10,6 @@ namespace Domain
     public class UrlInfo
     {
         public string Url { get; set; }
-        public int SizeInBytes { get; set; }
+        public int Size { get; set; }
     }
 }

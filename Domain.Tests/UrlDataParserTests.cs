@@ -28,7 +28,7 @@ namespace Domain.Tests
             expectedOutputData.Path.Add(inputData.Path, new UrlInfo()
             {
                 Url = inputData.Url,
-                SizeInBytes = inputData.Size
+                Size = inputData.Size
             });
 
             HttpResponseMessage responseMessage = new HttpResponseMessage();
@@ -45,7 +45,7 @@ namespace Domain.Tests
             result.Path.TryGetValue(inputData.Path, out UrlInfo resultUrlData);
 
             Assert.AreEqual(expectedUrlData.Url, resultUrlData.Url);
-            Assert.AreEqual(expectedUrlData.SizeInBytes, resultUrlData.SizeInBytes);
+            Assert.AreEqual(expectedUrlData.Size, resultUrlData.Size);
         }
 
         [TestMethod]

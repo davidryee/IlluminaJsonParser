@@ -66,6 +66,7 @@ namespace IlluminaJsonParser
                             Console.WriteLine("Error! HTTP request was not successful");
                         }
 
+                        //Write the objects as we go so we don't build a single massive object in memory
                         string jsonOutputData = JsonConvert.SerializeObject(outputData.Path);
 
                         //remove the first and last brackets from the json object { myobject }
@@ -98,17 +99,17 @@ namespace IlluminaJsonParser
                     {
                         if (reader.TokenType == JsonToken.StartObject)
                         {
-                            UrlData url = null;
+                            UrlData urlData = null;
                             try
                             {
-                                url = jsonDeserializer.Deserialize<UrlData>(reader);
+                                urlData = jsonDeserializer.Deserialize<UrlData>(reader);
                             }
                             catch (Exception ex)
                             {
                                 Console.WriteLine("JSON object could not be parsed.");
                                 Environment.Exit(1);
                             }
-                            dataToParse.Enqueue(url);
+                            dataToParse.Enqueue(urlData);
                         }
                     }
                     dataLeftInFile = false;
