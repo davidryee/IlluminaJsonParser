@@ -24,14 +24,14 @@ namespace IlluminaJsonParser
             Console.WriteLine("Please enter a file path to use for the output.");
             outputFilePath = Console.ReadLine().Trim();
             
-            ThreadStart addToQueueThreadStart = new ThreadStart(ReadFromFile);
-            Thread addToQueueThread = new Thread(addToQueueThreadStart);
+            ThreadStart readFromFileThreadStart = new ThreadStart(ReadFromFile);
+            Thread readFromFileThread = new Thread(readFromFileThreadStart);
             
-            ThreadStart removeFromQueueThreadStart = new ThreadStart(WriteToFile);
-            Thread removeFromQueueThread = new Thread(removeFromQueueThreadStart);
+            ThreadStart writeToFileThreadStart = new ThreadStart(WriteToFile);
+            Thread writeToFileThread = new Thread(writeToFileThreadStart);
             
-            addToQueueThread.Start();
-            removeFromQueueThread.Start();
+            readFromFileThread.Start();
+            writeToFileThread.Start();
         }
 
         private static void WriteToFile()
@@ -96,6 +96,7 @@ namespace IlluminaJsonParser
                             catch (Exception ex)
                             {
                                 Console.WriteLine("JSON object could not be parsed.");
+                                Environment.Exit(1);
                             }
                             dataToParse.Enqueue(url);
                         }
