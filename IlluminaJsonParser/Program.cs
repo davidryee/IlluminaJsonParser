@@ -2,6 +2,7 @@
 using System.IO;
 using System.Collections;
 using System.Threading;
+using System.Net.Http;
 using Newtonsoft.Json;
 using Domain;
 
@@ -10,7 +11,7 @@ namespace IlluminaJsonParser
     public class IlluminaJsonParser
     {
         static Queue dataToParse = new Queue();
-        static UrlDataParser parser = new UrlDataParser();
+        static UrlDataParser parser = new UrlDataParser(new HttpClientWrapper());
         static string outputFilePath;
         static string inputFilePath;
         static bool dataLeftInFile = true;
@@ -34,7 +35,7 @@ namespace IlluminaJsonParser
             writeToFileThread.Start();
         }
 
-        private static void WriteToFile()
+        private async static void WriteToFile()
         {
             using(StreamWriter streamWriter = new StreamWriter(outputFilePath))
             {
@@ -54,6 +55,15 @@ namespace IlluminaJsonParser
                         {
                             Console.WriteLine("Error! " + ex.Message);
                             Environment.Exit(1);
+                        }
+                        catch (InvalidDataException ex)
+                        {
+                            Console.WriteLine("Error! " + ex.Message);
+                            Environment.Exit(1);
+                        }
+                        catch (HttpRequestException)
+                        {
+                            Console.WriteLine("Error! HTTP request was not successful");
                         }
 
                         string jsonOutputData = JsonConvert.SerializeObject(outputData.Path);
